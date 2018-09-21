@@ -3,14 +3,61 @@
 # What is this?
 I have collected acknowledgement sections from all research papers published between 1997 and 2011 in the following six journals: The Journal of Finance, The Review of Financial Studies, Journal of Financial Economics, Journal of Financial Intermediation, Journal of Money, Credit & Banking, Journal of Banking and Finance.
 
-# Filelist
+The data contain consolidated and hand-checked information on 14,531 researchers:
+
+![14,531 researchers in the dataset](img/researchers.png)
+
+We used it to construct and study the network of informal collaboration:
+
+![The network from 2009 to 2011](img/2011network.png)
+
+You can explore interactively at [www.central-places.net](http://www.central-places.net/).
+
+# Where do I find information?
+The data, how we collected it and what it can be used for, is described in detail in Georg, Co-Pierre and Rose, Michael E. (2018): "What 5,000 Acknowledgements Tell Us About Informal Collaboration in Financial Economics", <i>Max Planck Institute for Innovation & Competition Discussion</i> Paper No. 11. ([PDF](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2709107))
+When using this data, please cite the article.
+
+# How do I use this?
+The file you're after is [`acks_min.json`](acks_min.json).
+
+In Python, you can get the most recent version of the data like so
+```python
+from json import loads
+from urllib.request import urlopen
+
+COFE = 'https://raw.githubusercontent.com/Michael-E-Rose/CoFE/master/acks_min.json'
+
+acks = loads(urlopen(COFE).read().decode("utf-8"))['data']
+```
+
+`acks` is a list of dictionaries (entries explained below).  You can iterate over the items to generate a network with networkx:
+```python
+from itertools import product
+
+import networkx as nx
+
+G = nx.Graph()
+for item in acks:
+    # Authors
+    auths = [a['label'] for a in item['authors']]
+    G.add_nodes_from(coms)
+    # Commenters
+    coms = [c['label'] for c in item.get('com', [])]
+    G.add_nodes_from(coms)
+    # Links
+    links = list(product(coms, auths))
+    G.add_edges_from(links)
+```
+
+## Filelist
+
 * [`acks.json`](acks.json) is a hierarchically organized json file listing all information we have for each article (see variable list below).  The primary is key is always the title of the article.
 * [`acks_min.json`](acks_min.json) is a minimized version of `acks.json` (no idents and superfluous blanks).
 * [`consolidate_acks.py`](consolidate_acks.py) generates above two files using data in folder [`data`](data).
 
 ## Variables
 
-* ``title` (string): The title as stated in the pdf
+* `title` (string): The title as stated in the pdf
 * `prev` (list of strings): Titles of previous versions of the research article
 * `journal` (string): Short version of the journal the article was published in
 * `year` (integer): The publication year
