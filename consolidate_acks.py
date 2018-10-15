@@ -81,9 +81,11 @@ def parse_file(lines, biblio):
             authors = []
         # Initatiate author-specific information
         elif cat in ('auth', 'auth-cor'):
-            author = pers_map.get(tokens[1].replace(".", "")).copy()
-            if author is None:
+            try:
+                author = pers_map.get(tokens[1].replace(".", "")).copy()
+            except AttributeError:
                 print(">>> {} without mapping".format(tokens[1]))
+                author = {}
             if cat == 'auth-cor':
                 author.update({'corresponding': True})
             author.update({'name': tokens[1]})
