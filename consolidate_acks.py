@@ -6,12 +6,9 @@ Acknowledgement files are parsed based on the category (beginning of line
 until colon) and stored in hierarchical structure.
 """
 
-import difflib
 import os
 import re
-from collections import OrderedDict
 from datetime import datetime
-from glob import glob
 from json import dumps
 
 import pandas as pd
