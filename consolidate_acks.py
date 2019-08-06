@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Author:   Michael E. Rose <michael.ernst.rose@gmail.com
-"""Consolidates names of persons and inst_map in acknowledgment files.
+"""Consolidates names of persons and institutions in acknowledgment files.
 
 Acknowledgement files are parsed based on the category (beginning of line
 until colon) and stored in hierarchical structure.
@@ -96,23 +96,18 @@ def parse_file(lines, biblio):
             else:
                 info = tokens[1].split("; ")
             authors[-1].update({cat: info})
-        # Split and consolidate commenters, referees, editors, etc.
-        elif cat in person_cats:
+        # Split and consolidate commenters, referees, editors, seminars, etc.
+        elif cat in person_cats or cat in inst_cats:
             try:
                 new = int(tokens[1])
             except ValueError:
-                new = consolidate(re.split(",|;", tokens[1]), pers_map, "Person")
-            if cat in d:
-                d[cat].extend(new)
-            else:
-                d[cat] = new
-        # Split and consolidate seminars
-        elif cat in inst_cats:
-            try:
-                new = int(tokens[1])
-            except ValueError:
-                new = consolidate(re.split(",|;", tokens[1]), inst_map,
-                                  "Institution")
+                if cat in person_cats:
+                    mapping = pers_map
+                    key = "Person"
+                else:
+                    mapping = inst_map
+                    key = "Institution"
+                new = consolidate(re.split(",|;", tokens[1]), mapping, key)
             if cat in d:
                 d[cat].extend(new)
             else:
