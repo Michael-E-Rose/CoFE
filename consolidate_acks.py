@@ -54,7 +54,7 @@ def consolidate(l, mapping, label):
             entry = clean_aff(entry)
         new = mapping.get(entry.replace(".", "").strip())
         if new is None:
-            print(">>> {} {} without mapping".format(label, entry.strip()))
+            print(f">>> {label} {entry.strip()} without mapping")
             continue
         if label == 'Person':
             new.update({'name': entry.strip()})
@@ -79,9 +79,9 @@ def parse_file(lines, biblio):
         # Initatiate author-specific information
         elif cat in ('auth', 'auth-cor'):
             try:
-                author = pers_map.get(tokens[1].replace(".", "")).copy()
-            except AttributeError:
-                print(">>> {} without mapping".format(tokens[1]))
+                author = pers_map[tokens[1].replace(".", "")].copy()
+            except KeyError:
+                print(f">>> Person {tokens[1]} without mapping")
                 author = {}
             if cat == 'auth-cor':
                 author.update({'corresponding': True})
