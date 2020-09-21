@@ -9,7 +9,7 @@ Sorted acknowledgment data from full research articles published between 1997 an
 * FUND: Funding the author received. One FUND-Line per author. When the recepient of the funding is not know, we assign the funding to everyone (that is, the FUND-Line is the same for all authors). Multiple entries are separated by `;`.
 * VIS: Affilations the author visited during publiction. One VIS-line per author. Multiple entries are separated by `;`.
 * FORMER: Previous Affilation of the author. One FORMER-line per author. Multiple entries are separated by `;`.
-* EDITOR: Name(s) of known editors. Has to be listed somewhere before COM line. Multiple entries separated by either `;` or `,`.
+* EDITOR: Name(s) of known editors. Multiple entries separated by either `;` or `,`.
 * REF: Names of known referees. Multiple entries separated by either `;` or `,`.
 * COM: Names commentators, that are not referees, discussants, editors or phd commitee members. Multiple entries separated by either `;` or `,`.
 * PHD: Names of members of the PhD committee, if listed. Multiple entries separated by either `;` or `,`.
