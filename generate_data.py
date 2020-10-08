@@ -62,10 +62,12 @@ def consolidate(l, mapping, label):
     return info
 
 
-def parse_file(lines, biblio):
+def parse_file(lines, fname):
     """Parse each line of a collection of lines (from file) depending on the
     category, which is indicatin by the beginning of the line.
     """
+    metainfo = fname.split('/')
+    biblio = {'journal': metainfo[3], 'year': int(metainfo[4])}
     out = []
     for line in lines:
         tokens = line.strip().split(": ", 1)
@@ -85,6 +87,11 @@ def parse_file(lines, biblio):
                 author = {}
             if cat == 'auth-cor':
                 author.update({'corresponding': True})
+            # Assert all authors are mapped to Scopus
+            try:
+                _ = author["scopus_id"]
+            except KeyError:
+                print(f">>> Author {author} w/o Scopus ID")
             author.update({'name': tokens[1]})
             authors.append(author)
         # Add information to author
@@ -125,10 +132,10 @@ def parse_file(lines, biblio):
     return out
 
 
-def read_ack_files(folder):
+def list_input_files():
     """Return list of text files containing acknowledgements."""
     files = []
-    for root, subdirs, filenames in os.walk(folder):
+    for root, subdirs, filenames in os.walk(INPUT_FOLDER):
         for filename in filenames:
             if not filename.endswith('dat'):
                 continue
@@ -156,11 +163,9 @@ inst_map = pd.read_csv(AFF_CONSOL_FILE, index_col=0)['alias'].to_dict()
 
 def main():
     paper_info = []
-    for file in read_ack_files(INPUT_FOLDER):
-        metainfo = file.split('/')
-        biblio = {'journal': metainfo[3], 'year': int(metainfo[4])}
+    for file in list_input_files():
         with open(file, 'r') as inf:
-            new = parse_file(inf.readlines(), biblio)
+            new = parse_file(inf.readlines(), file)
         paper_info.extend(new)
 
     now = datetime.now()
