@@ -1,0 +1,111 @@
+---
+layout: default
+---
+
+<style type="text/css">
+  html, body {
+    height: 100%;
+  }
+
+  #wrap {
+    min-height: 100%;
+  }
+
+  #logo {
+    display: block;
+    text-align: center;
+    margin: auto;
+  }
+
+  #main {
+    overflow:auto;
+    padding-bottom: 150px;  /* must be same height as the footer */
+  }
+
+  blockquote {
+    font-style: italic;
+  }
+
+  #footer {
+    position: relative;
+    margin-top: -150px;  /* negative value of footer height */
+    height: 150px;
+    clear:both;
+  } 
+
+  /*Opera Fix*/
+  body:before {
+    content:"";
+    height:100%;
+    float:left;
+    width:0;
+    margin-top:-32767px;/
+  }
+</style>
+
+
+<div class="container" id="wrap">
+
+  <div class="row" id="logo">
+    <img alt="logo" height="200px" src="img/logo_full.png">
+  </div>
+
+  <br>
+
+  <div id="main">
+    <p>With the dataset advertised here, we researched the information flow in financial economics: Rose, Michael E. and Georg, Co-Pierre: <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2709107" target="_blank">"What 5,000 Acknowledgements Tell Us About Informal Collaboration in Financial Economics"</a>, Max Planck Institute for Innovation & Competition Discussion Paper No. 18-11:</p>
+    <blockquote >Formal collaboration between researchers via co-authorship has been shown to have a positive impact on academic productivity. But most academic collaboration is informal, e.g. in the form of commentary on research papers. We present and discuss a novel dataset on informal collaboration in Financial Economics obtained from the acknowledgement sections of over 5,000 published research papers. We construct the social network of informal collaboration connecting authors and commenters and show that a researcher’s position in this network is predictive of her future productivity and the scholarly impact of the papers she comments on. We study the characteristics of the network using various measures from network theory and characterize what determines a researcher’s position in it.</blockquote>
+    <p>How does the network of informal collaboration actually look like? Who are the most central financial economists? We provide rankings according to two centrality measures compared to the number of years they are acknowledged, and display a network view:</p>
+
+    <div class="row">
+      <div class="col-xs-4">
+        <p><a href="2011" class="btn btn-success">2009-2011 &raquo;</a></p>
+      </div>
+      <div class="col-xs-4">
+        <p><a href="2010" class="btn btn-success">2008-2010 &raquo;</a></p>
+      </div>
+      <div class="col-xs-4">
+        <p><a href="2009" class="btn btn-success">2007-2009 &raquo;</a></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">
+        <p><a href="2008" class="btn btn-success">2006-2008 &raquo;</a></p>
+      </div>
+      <div class="col-xs-4">
+        <p><a href="2007" class="btn btn-success">2005-2007 &raquo;</a></p>
+      </div>
+      <div class="col-xs-4">
+        <p><a href="2006" class="btn btn-success">2004-2006 &raquo;</a></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">
+        <p><a href="2005" class="btn btn-success">2003-2005 &raquo;</a></p>
+      </div>
+      <div class="col-xs-4">
+        <p><a href="2004" class="btn btn-success">2002-2004 &raquo;</a></p>
+      </div>
+      <div class="col-xs-4">
+        <p><a href="2003" class="btn btn-success">2001-2003 &raquo;</a></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">
+        <p><a href="2002" class="btn btn-success">2000-2002 &raquo;</a></p>
+      </div>
+      <div class="col-xs-4">
+        <p><a href="2001" class="btn btn-success">1999-2001 &raquo;</a></p>
+      </div>
+      <div class="col-xs-4">
+        <p><a href="2000" class="btn btn-success">1998-2000 &raquo;</a></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">
+        <p><a href="1999" class="btn btn-success">1997-1999 &raquo;</a></p>
+      </div>
+    </div>
+  </div>
+  
+</div>

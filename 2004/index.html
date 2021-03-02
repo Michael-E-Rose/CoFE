@@ -1,0 +1,58 @@
+---
+layout: default
+---
+
+<style type="text/css">
+  #viz {
+    height: 500px;
+    width: 80%;
+  }
+</style>
+
+<script src="https://d3plus.org/js/d3.min.js"></script>
+<script src="https://d3plus.org/js/d3plus.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+
+<div class="container">
+  {% include navbar.html %}
+  {% include network.html year="2002-2004" %}
+  {% include ring.html %}
+
+  <div id="viz"></div>
+
+  {% include rankings.html %}
+  <div class="tab">
+    {% include_relative ranking.html %}
+  </div>
+
+    <script>
+  d3.json("ring.json", function(error, data) {
+
+    if (error) throw error;
+
+    // instantiate d3plus
+    var visualization = d3plus.viz()
+      .container("#viz")
+      .type("rings")
+
+      // Nodes
+      .data(data.nodes)
+      .id("id")
+      .text("label")
+      .color("thanks")
+
+      // Links
+      .edges({
+        "value": data.links,
+        "limit": 40
+      })
+
+      // Draw
+      .focus("Spiegel, Matthew")
+      .draw()
+  })
+  </script>
+
+</div>
