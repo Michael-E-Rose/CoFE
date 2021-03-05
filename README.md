@@ -11,7 +11,7 @@ We used it to construct and study the network of informal collaboration:
 
 ![The network from 2009 to 2011](img/2011network.png)
 
-You can explore interactively at [www.central-places.net](http://www.central-places.net/).
+You can explore interactively at [michael-e-rose.github.io/CoFE](http://michael-e-rose.github.io/CoFE).
 
 # Where do I find information?
 The data, how we collected it and what it can be used for, is described in detail in Georg, Co-Pierre and Rose, Michael E. (2018): "What 5,000 Acknowledgements Tell Us About Informal Collaboration in Financial Economics", <i>Max Planck Institute for Innovation & Competition Discussion</i> Paper No. 11. ([PDF](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2709107))
